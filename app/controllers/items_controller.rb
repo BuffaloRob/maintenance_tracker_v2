@@ -34,7 +34,7 @@ class ItemsController < ApplicationController
 
 	def show
 		#for use with form to make a new log
-		@log = @item.logs.build
+		#@log = @item.logs.build
 	end
 
 	def edit
