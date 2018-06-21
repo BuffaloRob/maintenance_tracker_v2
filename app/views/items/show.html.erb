@@ -1,0 +1,38 @@
+
+<h3>Maintenance Categories for <%= @item.name %> </h3> 
+
+<%= link_to  "Edit #{@item.name}", edit_item_path(@item), html_options = {class: 'badge badge-dark'} %><br>
+<br>
+
+<div class="list-group">
+  <% @item.categories.uniq.each do |category| %>
+    <li class="d-flex align-items-start flex-md-row">
+      <span class="badge badge-primary badge-pill">
+        <%= category.logs.past_due.count %>
+      </span>
+      <%= link_to  category.name, item_category_path(@item, category), html_options = {class: 'list-group-item list-group-item-action list-group-item-light'} %>
+
+      <%= link_to  "Show Logs", item_category_path(@item, category), id: "logBtn_#{category.id}" ,class: 'btn align-self-center badge badge-primary' %>
+    </li>
+    <br>
+    <div class="accordion" >
+      <div id="<%= "showLog_#{category.id}" %>"></div>
+    </div>
+  <% end %>
+</div>
+<br>
+
+<div>
+  <%= render 'maintenance_logs/form'%>
+</div>
+
+<div id="logResult">
+  <p id="logDatePerformed"></p>
+  <p id="logDateDue"></p>
+  <p id="logCost"></p>
+  <p id="logNotes"></p>
+  <p id="logTools"></p>
+</div>
+
+<%= link_to  "Back To Maintenance Items", items_path, html_options = {class: 'badge badge-primary'} %><br>
+<%= link_to  "Add a New Maintenance Log", new_item_log_path(@maintenance_item), html_options = {class: 'badge badge-primary'} %><br>

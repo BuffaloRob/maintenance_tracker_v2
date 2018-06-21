@@ -1,0 +1,22 @@
+
+<h3>Maintenance Items</h3>
+<div class="list-group">
+  <% @items.each do |item| %>
+    <li class="d-flex align-items-start flex-md-row">
+      <span class="badge badge-primary badge-pill">
+        <%= item.logs.past_due.count %>
+      </span>
+      <%= link_to item.name, item_path(item), html_options = {class: 'list-group-item list-group-item-action list-group-item-light'} %>
+
+      <%= link_to  "Delete this item", item, method: :delete, data: { confirm: 'Are you sure about that?'}, class: 'btn align-self-center badge badge-primary' %>
+    </li>
+    
+    <br>
+    <div class="accordion">
+      <div id="<%= "showCategory_#{item.id}" %>"></div>
+    </div>
+  <% end %>
+</div>
+<br>
+<%= link_to 'Add New Maintenance Item', new_item_path, html_options = {class: 'badge badge-primary'} %>
+

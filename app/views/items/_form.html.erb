@@ -1,0 +1,22 @@
+<% if @item.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:
+    </h2>
+
+    <ul>
+      <% @item.errors.full_messages.each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+        <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @item, :html => {:class => "form-group"} do |f| %>
+  
+  <%= f.text_field :name, :class => 'form-control', :placeholder => "Enter New Maintenance Item Name" %><br>
+
+  <%= f.submit class:'btn btn-primary' %>
+<% end %>
