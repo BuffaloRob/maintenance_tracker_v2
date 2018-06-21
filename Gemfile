@@ -31,7 +31,7 @@ gem 'devise'
 
 gem 'figaro'
 
-gem 'bootstrap'
+gem 'bootstrap', '~> 4.1.1'
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
