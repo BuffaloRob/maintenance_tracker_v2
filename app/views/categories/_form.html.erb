@@ -1,0 +1,22 @@
+<% if @category.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:
+    </h2>
+
+    <ul>
+      <% @category.errors.full_messages.each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+        <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_for [@item, @category], :html => {:class => "form-group"} do |f| %>
+  
+  <%= f.text_field :name, :class => 'form-control', :placeholder => "Enter New Category Name" %><br>
+
+  <%= f.submit class: 'btn btn-primary' %><br>
+
+<% end %>
