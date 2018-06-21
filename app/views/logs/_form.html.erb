@@ -1,0 +1,50 @@
+<% if @log.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@log.errors.count, "error") %> prohibited this log from being saved:
+    </h2>
+    
+    <ul>
+      <% @log.errors.full_messages.each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for [@item, @log], :html => {:class => "form-group"} do |f| %>
+
+  <div class="form-group col-auto">
+    <p>Add or Select a Category</p>
+    <%= f.fields_for :category, @log.build_category do |category| %>
+      <%= category.collection_radio_buttons :id, @item.categories, :id, :name %><br>
+      <%= category.text_field :name, :class => 'form-control', :placeholder => "Add a New Category" %>
+    <% end %>
+  </div>
+
+  <div class="form-group col-auto">
+    <%= f.label :date_performed %>
+    <%= f.date_select :date_performed, :class => 'form-control' %><br>
+    <%= f.label :date_due, :class => '' %>
+    <%= f.date_select :date_due, :class => 'form-control' %><br>
+  </div>
+
+  <div class="form-group col-auto">
+    <%= f.label :tools %>
+    <%= f.text_field :tools, :class => 'form-control', :placeholder => "Enter Tools" %>
+  </div>
+
+  <div class="form-group col-auto">  
+  <%= f.label :cost %>
+  <%= f.number_field :cost, :class => 'form-control', :placeholder => "Enter Cost" %>
+  </div>
+
+  <div class="form-group col-auto">  
+  <%= f.label :notes %>
+  <%= f.text_area :notes, :class => 'form-control', :placeholder => "Enter Any Notes" %>
+  </div>
+
+  <%= f.submit class: 'btn btn-primary' %>
+<% end %>

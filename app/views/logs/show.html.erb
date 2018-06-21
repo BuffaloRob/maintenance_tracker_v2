@@ -1,0 +1,48 @@
+<div class="form-group">
+  <h3>Log for <%= @log.category.name %></h3>
+
+  <div class="col-auto">
+    <h5>Date Performed:</h5>
+    <% if @log.date_performed %>
+      <%= formatted_date_performed(@log) %><br>
+    <% else %>
+      No Date Entered
+    <% end %>
+  </div>
+  <br>
+
+  <div class="col-auto">
+    <h5>Date due:</h5>
+    <% if @log.date_due %>
+      <%= formatted_date_due(@log) %><br>
+    <% else %>
+      No Date Entered
+    <% end %>
+  </div>
+  <br>
+
+  <div class="col-auto">
+    <h5>Tools Required:</h5>
+    <%= @log.tools %><br>
+  </div>
+  <br>
+
+  <div class="col-auto">
+    <h5>Cost:</h5>
+    $<%= @log.cost %><br>
+  </div>
+  <br>
+
+  <div class="col-auto">
+    <h5>Notes:</h5>
+    <%= @log.notes %><br>
+  </div>
+  <br>
+  
+  <div class="col-auto">
+    <%= link_to  "Back to Logs for #{@log.item.name}", item_path(@log.item_id), html_options = {class: 'badge badge-primary'} %><br>
+    <%= link_to  "Edit", edit_item_log_path(@log.item_id, @log), html_options = {class: 'badge badge-primary'} %><br>
+    <%= link_to  "Delete this log entry", @maintenance_log, method: :delete, data: { confirm: "You sure?"}, class: "badge badge-primary" %><br>
+    <%= link_to  "Add a New Entry", new_item_log_path(@log.item_id), html_options = {class: 'badge badge-primary'} %><br>
+  </div>
+</div>
