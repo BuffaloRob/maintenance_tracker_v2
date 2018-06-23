@@ -2,7 +2,18 @@ class Log < ApplicationRecord
   belongs_to :item
   belongs_to :category
   validates :cost, numericality: true
+  validates :category, presence: true
   validate :starts_after_today?, :due_before_start?
+
+  def category_attributes=(cat_attributes)
+    #ensures that radio button only used if text field left empty
+    if cat_attributes[:name].empty?
+      category = Category.find_by(id: cat_attributes[:id])
+    else
+      category = Category.find_or_create_by(name: cat_attributes[:name])
+    end
+    self.category = category
+  end
 
   def starts_after_today?
     if date_performed.present? && date_performed > Date.today 
