@@ -2,7 +2,7 @@ class Log < ApplicationRecord
   belongs_to :item
   belongs_to :category
   validates :cost, numericality: true
-  validates :starts_after_today?, :due_before_start?
+  # validates :starts_after_today?, :due_before_start?
 
   def starts_after_today?
     if date_performed.present? && date_performed > Date.today 
