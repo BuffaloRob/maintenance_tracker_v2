@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
       redirect_to item_path, alert: "Item not found"
     else
       @item = Item.find(params[:item_id])
-      @category = item.categories.build
+      @category = @item.categories.build
     end
   end
   
@@ -17,7 +17,7 @@ class CategoriesController < ApplicationController
       redirect_to item_path, alert: "Item not found"
     else
       @item = Item.find(params[:item_id])
-      if @category = item.categories.create(category_params)
+      if @category = @item.categories.create(category_params)
         redirect_to item_category_path(@item, @category)
       else
         render :new
