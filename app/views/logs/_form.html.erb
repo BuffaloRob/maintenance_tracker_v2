@@ -17,10 +17,10 @@
 <%= form_for [@item, @log], :html => {:class => "form-group"} do |f| %>
 
   <div class="form-group col-auto">
-    <p>Add or Select a Category</p>
+    <p>Select a Category</p>
     <%= f.fields_for :category, @log.build_category do |category| %>
       <%= category.collection_radio_buttons :id, @item.categories, :id, :name %><br>
-      <%= category.text_field :name, :class => 'form-control', :placeholder => "Add a New Category" %>
+      <%# <%= category.text_field :name, :class => 'form-control', :placeholder => "Add a New Category" %>
     <% end %>
   </div>
 
