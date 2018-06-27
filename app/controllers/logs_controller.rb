@@ -85,6 +85,28 @@ class LogsController < ApplicationController
     redirect_to :root
   end
 
+  def past_due
+    @current_user_logs = []
+    @items = current_user.items
+    @items.each do |item|
+      item.logs.past_due.each do |log|
+        @current_user_logs << log
+      end
+    end
+  end
+
+  def upcoming
+    @current_user_logs = []
+    @items = current_user.items
+    @items.each do |item|
+      item.logs.upcoming.each do |log|
+        @current_user_logs << log
+      end
+    end
+  end
+
+  
+
   private
 
   def log_params
