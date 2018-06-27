@@ -5,13 +5,14 @@ class Log < ApplicationRecord
   validates :category, presence: true
   validate :starts_after_today?, :due_before_start?
 
-  def category_attributes=(cat_attributes)
+  def category_attributes=(attributes)
     #ensures that radio button only used if text field left empty
-    if cat_attributes[:name].empty?
-      category = Category.find_by(id: cat_attributes[:id])
-    else
-      category = Category.find_or_create_by(name: cat_attributes[:name])
-    end
+    # if attributes[:name].empty?
+    #   category = Category.find_by(id: attributes[:id])
+    # else
+    #   category = Category.find_or_create_by(name: attributes[:name])
+    # end
+    category = Category.find_by(id: attributes[:id])
     self.category = category
   end
 
