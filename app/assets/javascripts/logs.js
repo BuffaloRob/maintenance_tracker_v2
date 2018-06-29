@@ -38,12 +38,11 @@ class LogDetails {
     this.notes = notes;
     this.tools = tools;
     this.cost = cost;
-    this.date_performed = date_performed;
-    this.date_due = date_due
+    this.date_performed = new Date(date_performed).toLocaleDateString("en-US", { timeZone: "UTC" });
+    this.date_due = new Date(date_due).toLocaleDateString("en-US", { timeZone: "UTC" });
   }
 
   renderDetails() {
-    // console.log(`these are the deetz ${this.notes} and ${this.tools}.`)
     return `
       <h5>Due Date: ${this.date_due}</h5>
       <p>Cost: $ ${this.cost}</p>
