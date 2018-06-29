@@ -1,6 +1,21 @@
 class CategoriesController < ApplicationController
 
   def index
+    if params[:item_id]
+      @item = Item.find_by(id: params[:item_id])
+      if @item.nil?
+        redirect_to item_path, alert: "That Maintenance Item Does Not Exist"
+      else
+        @categories = @item.categories
+      end
+    else 
+      @categories = Category.all
+    end
+
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @categories }
+    end
   end
 
   def new
