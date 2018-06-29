@@ -22,18 +22,6 @@
 </div>
 <br>
 
-<%# <div>
-  <%= render 'logs/form'%>
-<%# </div> %>
-
-<div id="logResult">
-  <p id="logDatePerformed"></p>
-  <p id="logDateDue"></p>
-  <p id="logCost"></p>
-  <p id="logNotes"></p>
-  <p id="logTools"></p>
-</div>
-
 <%= link_to  "Back To Items", items_path, html_options = {class: 'badge badge-primary'} %><br>
 <%= link_to  "Add a Category", new_item_category_path(@item), html_options = {class: 'badge badge-primary'} %><br>
 <%= link_to  "Add a New Log", new_item_log_path(@item), html_options = {class: 'badge badge-primary'} %><br>

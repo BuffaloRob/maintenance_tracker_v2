@@ -31,6 +31,37 @@ $(document).on('turbolinks:load', function () {
     event.preventDefault();
   });
 
+  // For adding new log via ajax
+  $('form').submit(function (event) {
+    event.preventDefault();
+    let values = $(this).serialize();
+
+    let action = $(this).attr('action')
+
+    let logs = $.post(`${action}.json`, values);
+
+    logs.done(function (data) {
+      let log = data;
+      let date_performed = new Date(log.date_performed);
+      let date_due = new Date(log.date_due);
+
+      $("#logDatePerformed").text(date_performed.toLocaleDateString('en-US', { timeZone: 'UTC' }));
+      $("#logDatePerformed").prepend("Performed on: ");
+
+      $("#logDateDue").text(date_due.toLocaleDateString('en-US', { timeZone: 'UTC' }));
+      $("#logDateDue").prepend("Due on: ");
+
+      $("#logCost").text(log.cost);
+      $("#logCost").prepend("Cost: $");
+
+      $("#logNotes").text(log.notes);
+      $("#logNotes").prepend("Note: ");
+
+      $("#logTools").text(log.tools);
+      $("#logTools").prepend("Tools: ");
+    });
+  });
+
 })
 
 class LogDetails {

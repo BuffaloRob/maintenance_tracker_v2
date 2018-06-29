@@ -1,4 +1,13 @@
 <h3>Add a New Log for <%= @log.item.name %></h3>
 
 <%= render 'form' %>
+
+<div id="logResult">
+  <p id="logDatePerformed"></p>
+  <p id="logDateDue"></p>
+  <p id="logCost"></p>
+  <p id="logNotes"></p>
+  <p id="logTools"></p>
+</div>
+
 <%= link_to  "Back to Logs for #{@log.item.name}", item_path(@log.item_id), html_options = {class: 'badge badge-primary'} %><br>
