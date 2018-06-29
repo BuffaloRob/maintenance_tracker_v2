@@ -6,10 +6,9 @@ $(document).on('turbolinks:load', function () {
 
     $.getJSON(categoryPath)
       .done(function (data) {
-        // console.log(data);
         for (cat of data) {
           let result = "";
-          let id = cat.item_id;
+          let id = cat.item.id;
           let name = cat.name;
           let $category = $("#showCategory_" + id);
 
