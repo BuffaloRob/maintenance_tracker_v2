@@ -83,33 +83,4 @@ class LogDetails {
   }
 }
 
-//     $.getJSON(detailsPath)
-//       .done(function (data) {
-
-//         let result = "";
-//         const id = data.id;
-//         const note = data.notes;
-//         const date_performed = data.date_performed;
-//         const date_due = data.date_due;
-//         const tools = data.tools;
-//         const cost = data.cost;
-//         debugger
-//         const $details = $("#showDetails_" + id);
-
-//         result +=
-//           "<p>Performed on: " + date_performed + "</p>" + "\n" +
-//           "<p>Due on: " + date_due + "</p>" + "\n" +
-//           "<p>Notes: " + note + "</p>" + "\n" +
-//           "<p>Cost: $" + cost + "</p>" + "\n" +
-//           "<p>Tools: " + tools + "</p>" +
-//           "<hr>";
-
-//         $details.append(result);
-//       })
-//       .fail(function (data) {
-//         console.log("Error:");
-//         console.log(data);
-//       });
-//   });
-// })
 
