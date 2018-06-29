@@ -3,23 +3,21 @@ $(document).on('turbolinks:load', function () {
   $("[id*=detailsBtn]").one("click", function(event) {
     event.preventDefault();
     let detailsPath = event.target.pathname;
-    debugger
-
- 
-    // added http to this, only use 'detailsPath' if issues pop up
-    fetch(detailsPath, {
+     fetch(detailsPath, {
+      credentials: 'same-origin',
       headers: {
-        credentials: 'same-origin'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
       }
     })
       .then(function (resp) {
-        //or specify resp.json()
-        return resp;
+        return resp.json();
       })
       .then(function (data) {
-        const logDetails = new LogDetails(data.notes, data.tools);
+        const id = data.id
+        const logDetails = new LogDetails(data.notes, data.tools, data.cost, data.date_performed, data.date_due);
 
-        $("#showDetails").append(logDetails.renderDetails());
+        $("#showDetails_" + id).append(logDetails.renderDetails());
         console.log(logDetails.renderDetails());
       });
   });
@@ -36,15 +34,21 @@ $(document).on('turbolinks:load', function () {
 })
 
 class LogDetails {
-  constructor(notes, tools) {
+  constructor(notes, tools, cost, date_performed, date_due) {
     this.notes = notes;
     this.tools = tools;
+    this.cost = cost;
+    this.date_performed = date_performed;
+    this.date_due = date_due
   }
 
   renderDetails() {
-    console.log(`these are the deetz ${this.notes} and ${this.tools}.`)
+    // console.log(`these are the deetz ${this.notes} and ${this.tools}.`)
     return `
-      <h2>${this.notes}</h2>
+      <h5>Due Date: ${this.date_due}</h5>
+      <p>Cost: $ ${this.cost}</p>
+      <p>Tools: ${this.tools}</p>
+      <p>Notes: ${this.notes}</p>
     `
   }
 }
