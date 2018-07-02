@@ -6,13 +6,15 @@ Rails.application.routes.draw do
     resources :categories, only: [:index, :show, :new, :edit, :create]
   end
   
-  devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    confirmations: 'users/confirmations'
+  }
 
   get 'past_due', to: "logs#past_due"
   get 'upcoming', to: "logs#upcoming"
 
-  get 'logs/:id/log_data', to: 'logs#log_data'
+  # get 'logs/:id/log_data', to: 'logs#log_data'
 
   root "items#index"
 end
