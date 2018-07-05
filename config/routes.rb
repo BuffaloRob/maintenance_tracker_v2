@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :categories, only: [:index, :show, :new, :edit, :create]
   end
   
-  devise_for :users
+  # devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get 'past_due', to: "logs#past_due"
