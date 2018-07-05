@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark justify-content-between">
-  <% if user_signed_in? %>
+  <% if signed_in? %>
     <div class="d-flex">
       <a class="navbar-brand">MT</a>
     </div>
@@ -19,7 +19,7 @@
           <a href="/past_due">Past Due</a>
         </li>
         <li class="nav_item nav-link">
-          <%= link_to  "Log Out", destroy_user_session_path, method: :delete %>
+          <%= link_to  "Log Out", sign_out_path, method: :delete %>
         </li>
       </ul>
       <ul class="nav navbar-nav flex-row">
@@ -29,7 +29,13 @@
       </ul>
     </div>
   <% else %>
-    <a class="navbar-brand mx-auto" href="/users/sign_in">Sign in</a>
+    <%= link_to 'Sign in', sign_in_path, :class => 'navbar-brand mx-auto'  %>
   <% end %>
+
+  <div id="flash">
+      <% flash.each do |key, value| %>
+        <div class="flash <%= key %>"><%= value %></div>
+      <% end %>
+  </div>
 
 </nav>
