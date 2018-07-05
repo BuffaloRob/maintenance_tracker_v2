@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
 		if current_user
 			@items = current_user.items
 		else
-			redirect_to new_user_session_path
+			redirect_to sign_in_path
 		end
 
 	end
