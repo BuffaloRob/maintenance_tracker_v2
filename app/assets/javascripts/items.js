@@ -28,7 +28,7 @@ $(document).on('turbolinks:load', function () {
     active: false,
   });
 
-  $("[id*=categoryBtn]").on("click", function (event) {
+  $("[id*=catBtn]").on("click", function (event) {
     event.preventDefault();
   });
 
