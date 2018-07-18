@@ -3,11 +3,11 @@ $(document).on('turbolinks:load', function () {
   $("[id*=detailsBtn]").one("click", function(event) {
     event.preventDefault();
     let detailsPath = event.target.pathname;
-     fetch(detailsPath, {
+    fetch(detailsPath, {
       credentials: 'same-origin',
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
       }
     })
       .then(function (resp) {
@@ -30,6 +30,25 @@ $(document).on('turbolinks:load', function () {
   $("[id*=detailsBtn]").on("click", function (event) {
     event.preventDefault();
   });
+
+  class LogDetails {
+    constructor(notes, tools, cost, date_performed, date_due) {
+      this.notes = notes;
+      this.tools = tools;
+      this.cost = cost;
+      this.date_performed = new Date(date_performed).toLocaleDateString("en-US", { timeZone: "UTC" });
+      this.date_due = new Date(date_due).toLocaleDateString("en-US", { timeZone: "UTC" });
+    }
+
+    renderDetails() {
+      return `
+      <h5>Due Date: ${this.date_due}</h5>
+      <p>Cost: $ ${this.cost}</p>
+      <p>Tools: ${this.tools}</p>
+      <p>Notes: ${this.notes}</p>
+    `
+    }
+  }
 
   // For adding new log via ajax
   $('form').submit(function (event) {
@@ -64,23 +83,6 @@ $(document).on('turbolinks:load', function () {
 
 })
 
-class LogDetails {
-  constructor(notes, tools, cost, date_performed, date_due) {
-    this.notes = notes;
-    this.tools = tools;
-    this.cost = cost;
-    this.date_performed = new Date(date_performed).toLocaleDateString("en-US", { timeZone: "UTC" });
-    this.date_due = new Date(date_due).toLocaleDateString("en-US", { timeZone: "UTC" });
-  }
 
-  renderDetails() {
-    return `
-      <h5>Due Date: ${this.date_due}</h5>
-      <p>Cost: $ ${this.cost}</p>
-      <p>Tools: ${this.tools}</p>
-      <p>Notes: ${this.notes}</p>
-    `
-  }
-}
 
 
