@@ -1,11 +1,11 @@
-$(document).on('turbolinks:load', function () {
+$(document).on('turbolinks:load', () => {
 
-  $("[id*=catBtn]").one("click", function (event) {
+  $("[id*=catBtn]").one("click", event => {
     event.preventDefault();
     let categoryPath = event.target.pathname;
 
     $.getJSON(categoryPath)
-      .done(function (data) {
+      .done( data => {
         for (cat of data) {
           let result = "";
           let id = cat.item.id;
@@ -17,7 +17,7 @@ $(document).on('turbolinks:load', function () {
           $category.append(result);
         }
       })
-      .fail(function (data) {
+      .fail(data => {
         console.log("Error:");
         console.log(data);
       });
@@ -28,7 +28,7 @@ $(document).on('turbolinks:load', function () {
     active: false,
   });
 
-  $("[id*=catBtn]").on("click", function (event) {
+  $("[id*=catBtn]").on("click", event => {
     event.preventDefault();
   });
 

@@ -1,11 +1,11 @@
-$(document).on('turbolinks:load', function () {
+$(document).on('turbolinks:load', () => {
 
-  $("[id*=logBtn]").one("click", function (event) {
+  $("[id*=logBtn]").one("click", event => {
     event.preventDefault();
     let logPath = event.target.pathname;
 
     $.getJSON(logPath)
-      .done(function (data) {
+      .done( data => {
 
         for (obj of data) {
           let result = "";
@@ -24,7 +24,7 @@ $(document).on('turbolinks:load', function () {
           $log.append(result);
         }
       })
-      .fail(function (data) {
+      .fail( data => {
         console.log("Error:");
         console.log(data);
       });
@@ -35,7 +35,7 @@ $(document).on('turbolinks:load', function () {
     active: false,
   });
 
-  $("[id*=logBtn]").on("click", function (event) {
+  $("[id*=logBtn]").on("click", event => {
     event.preventDefault();
   })
 
