@@ -1,6 +1,6 @@
-$(document).on('turbolinks:load', function () {
+$(document).on('turbolinks:load', () => {
 
-  $("[id*=detailsBtn]").one("click", function(event) {
+  $("[id*=detailsBtn]").one("click", event => {
     event.preventDefault();
     let detailsPath = event.target.pathname;
     fetch(detailsPath, {
@@ -10,10 +10,10 @@ $(document).on('turbolinks:load', function () {
       'Accept': 'application/json'
       }
     })
-      .then(function (resp) {
+      .then(resp => {
         return resp.json();
       })
-      .then(function (data) {
+      .then(data => {
         const id = data.id
         const logDetails = new LogDetails(data.notes, data.tools, data.cost, data.date_performed, data.date_due);
 
@@ -27,7 +27,7 @@ $(document).on('turbolinks:load', function () {
     active: false,
   });
 
-  $("[id*=detailsBtn]").on("click", function (event) {
+  $("[id*=detailsBtn]").on("click", event => {
     event.preventDefault();
   });
 
@@ -51,7 +51,7 @@ $(document).on('turbolinks:load', function () {
   }
 
   // For adding new log via ajax
-  $('form').submit(function (event) {
+  $('form').submit( function (event) {
     event.preventDefault();
     let values = $(this).serialize();
 
@@ -59,7 +59,7 @@ $(document).on('turbolinks:load', function () {
 
     let logs = $.post(`${action}.json`, values);
 
-    logs.done(function (data) {
+    logs.done(data => {
       let log = data;
       let date_performed = new Date(log.date_performed);
       let date_due = new Date(log.date_due);
