@@ -32,17 +32,17 @@ $(document).on('turbolinks:load', () => {
   });
 
   class LogDetails {
-    constructor(notes, tools, cost, date_performed, date_due) {
+    constructor(notes, tools, cost, datePerformed, dateDue) {
       this.notes = notes;
       this.tools = tools;
       this.cost = cost;
-      this.date_performed = new Date(date_performed).toLocaleDateString("en-US", { timeZone: "UTC" });
-      this.date_due = new Date(date_due).toLocaleDateString("en-US", { timeZone: "UTC" });
+      this.datePerformed = new Date(datePerformed).toLocaleDateString("en-US", { timeZone: "UTC" });
+      this.dateDue = new Date(dateDue).toLocaleDateString("en-US", { timeZone: "UTC" });
     }
 
     renderDetails() {
       return `
-      <h5>Due Date: ${this.date_due}</h5>
+      <h5>Due Date: ${this.dateDue}</h5>
       <p>Cost: $ ${this.cost}</p>
       <p>Tools: ${this.tools}</p>
       <p>Notes: ${this.notes}</p>
@@ -61,13 +61,13 @@ $(document).on('turbolinks:load', () => {
 
     logs.done(data => {
       let log = data;
-      let date_performed = new Date(log.date_performed);
-      let date_due = new Date(log.date_due);
+      let datePerformed = new Date(log.date_performed);
+      let dateDue = new Date(log.date_due);
 
-      $("#logDatePerformed").text(date_performed.toLocaleDateString('en-US', { timeZone: 'UTC' }));
+      $("#logDatePerformed").text(datePerformed.toLocaleDateString('en-US', { timeZone: 'UTC' }));
       $("#logDatePerformed").prepend("Performed on: ");
 
-      $("#logDateDue").text(date_due.toLocaleDateString('en-US', { timeZone: 'UTC' }));
+      $("#logDateDue").text(dateDue.toLocaleDateString('en-US', { timeZone: 'UTC' }));
       $("#logDateDue").prepend("Due on: ");
 
       $("#logCost").text(log.cost);
