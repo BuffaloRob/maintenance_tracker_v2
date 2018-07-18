@@ -6,18 +6,20 @@ $(document).on('turbolinks:load', () => {
 
     $.getJSON(logPath)
       .done( data => {
-
+        data.sort(function(a, b) {
+          return new Date(a.date_performed) - new Date(b.date_performed);
+        })
         for (obj of data) {
           let result = "";
           let id = obj.category.id;
           let note = obj.notes;
-          let date_performed = new Date(obj.date_performed);
-          let date_due = new Date(obj.date_due);
+          let datePerformed = new Date(obj.date_performed);
+          let dateDue = new Date(obj.date_due);
           let tools = obj.tools;
           let $log = $("#showLog_" + id);
 
-          result += "<p>Performed on: " + date_performed.toLocaleDateString('en-US', { timeZone: 'UTC' }) + "</p>" + "\n" +
-            "<p>Due on: " + date_due.toLocaleDateString('en-US', { timeZone: 'UTC' }) + "</p>" + "\n" +
+          result += "<p>Performed on: " + datePerformed.toLocaleDateString('en-US', { timeZone: 'UTC' }) + "</p>" + "\n" +
+            "<p>Due on: " + dateDue.toLocaleDateString('en-US', { timeZone: 'UTC' }) + "</p>" + "\n" +
             "<p>Notes: " + note + "</p>" +
             "<hr>";
 
